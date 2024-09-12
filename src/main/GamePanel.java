@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable{
 	final int originalTileSize = 16; // 16x16 tile
 	final int scale = 3;
 	
-	final int tileSize = originalTileSize * scale; //16 * 3 = 48x48 tile
+	public final int tileSize = originalTileSize * scale; //16 * 3 = 48x48 tile
 	final int maxScreenCol = 16; //Terdapat 16 kolom
 	final int maxScreenRow = 12; //Tedapat 12 baris
 	final int screenWidth =  tileSize * maxScreenCol; //48 * 16 = 768 pixels;
@@ -130,15 +130,8 @@ public class GamePanel extends JPanel implements Runnable{
 	//Method for update information to run gamethread
 	public void update() {
 		
-		if(keyH.upPressed == true) {
-			playerY -= playerSpeed;
-		} else if (keyH.downPressed == true) {
-			playerY += playerSpeed;
-		} else if (keyH.leftPressed == true) {
-			playerX -= playerSpeed;
-		} else if (keyH.rightPressed == true) {
-			playerX += playerSpeed;
-		}
+		player.update();
+		
 	}
 	
 	//Method for draw or paint graphic
@@ -147,9 +140,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		Graphics2D g2 = (Graphics2D)g;
 		
-		g2.setColor(Color.white);
-		
-		g2.fillRect(playerX, playerY, tileSize, tileSize);
+		player.draw(g2);
 		
 		g2.dispose();
 	}
