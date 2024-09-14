@@ -145,7 +145,13 @@ public class Player extends Entity {
 				System.out.println("Key: " + hasKey);
 				break;
 			case "Poop":
+				gp.playSoundEffect(3);
 				speed -= 2;
+				gp.obj[i] = null;
+				break;
+			case "Ligthing":
+				gp.playSoundEffect(3);
+				speed += 2;
 				gp.obj[i] = null;
 				break;
 			}
