@@ -3,6 +3,7 @@ package main;
 import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Key;
+import object.OBJ_Poop;
 
 public class AssetSetter {
 	
@@ -28,5 +29,9 @@ public class AssetSetter {
 		gp.obj[3] = new OBJ_Chest();
 		gp.obj[3].worldX = 29 * gp.tileSize;
 		gp.obj[3].worldY = 9 * gp.tileSize;
+		
+		gp.obj[4] = new OBJ_Poop();
+		gp.obj[4].worldX = 25 * gp.tileSize;
+		gp.obj[4].worldY = 9 * gp.tileSize;
 	}
 }
