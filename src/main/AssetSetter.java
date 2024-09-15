@@ -32,8 +32,8 @@ public class AssetSetter {
 		gp.obj[3].worldY = 9 * gp.tileSize;
 		
 		gp.obj[4] = new OBJ_Poop();
-		gp.obj[4].worldX = 25 * gp.tileSize;
-		gp.obj[4].worldY = 9 * gp.tileSize;
+		gp.obj[4].worldX = 36 * gp.tileSize;
+		gp.obj[4].worldY = 16 * gp.tileSize;
 		
 		gp.obj[5] = new OBJ_Ligthing();
 		gp.obj[5].worldX = 25 * gp.tileSize;

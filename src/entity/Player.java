@@ -19,6 +19,9 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	public int hasKey = 0;
+	int standCounter = 0;
+	boolean  moving = false;
+	int pixelCounter = 0;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		this.gp = gp;
@@ -29,10 +32,10 @@ public class Player extends Entity {
 		
 		// Solid Area for character		
 		solidArea = new Rectangle();
-		solidArea.x = 8;
-		solidArea.y = 16;
-		solidArea.width = 24;
-		solidArea.height = 24;
+		solidArea.x = 1;
+		solidArea.y = 1;
+		solidArea.width = 46;
+		solidArea.height = 46;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY= solidArea.y;
 		
@@ -71,27 +74,45 @@ public class Player extends Entity {
 	
 	public void update() {
 		
-		if(keyH.upPressed == true || keyH.downPressed == true || 
-				keyH.leftPressed == true || keyH.rightPressed == true) {
-			
-			if(keyH.upPressed == true) {
-				direction = "up";
-			} else if (keyH.downPressed == true) {
-				direction = "down";
-			} else if (keyH.leftPressed == true) {
-				direction = "left";
-			} else if (keyH.rightPressed == true) {
-				direction = "right";
+		if(moving == false) {
+			if(keyH.upPressed == true || keyH.downPressed == true || 
+					keyH.leftPressed == true || keyH.rightPressed == true) {
+				
+				if(keyH.upPressed == true) {
+					direction = "up";
+				} else if (keyH.downPressed == true) {
+					direction = "down";
+				} else if (keyH.leftPressed == true) {
+					direction = "left";
+				} else if (keyH.rightPressed == true) {
+					direction = "right";
+				}
+				
+				moving = true;
+				
+				//Check tile collision
+				collisionOn = false;
+				gp.cChecker.checkTile(this);
+				
+				//CHECK OBJECT COLLISION
+				int objIndex = gp.cChecker.checkObject(this, true);
+				pickUpObject(objIndex);
 			}
+				
+				else {
+					standCounter++;
+					
+					if(standCounter == 20) {
+						spriteNum = 1;
+						standCounter = 0;
+					}
+					
+				}
+				
+		}	
+		
+		if(moving == true) {
 			
-			//Check tile collision
-			collisionOn = false;
-			gp.cChecker.checkTile(this);
-			
-			//CHECK OBJECT COLLISION
-			int objIndex = gp.cChecker.checkObject(this, true);
-			pickUpObject(objIndex);
-
 			//IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if(collisionOn == false ) {
 				switch(direction) {
@@ -119,11 +140,17 @@ public class Player extends Entity {
 				}
 				spriteCounter = 0;
 			}
-		}
-		
-	
-	}
-	
+			
+			pixelCounter += speed;
+			
+			if(pixelCounter == 48) {
+				moving = false;
+				pixelCounter = 0;
+			}
+		} 
+}
+
+			
 	public void pickUpObject(int i) {
 		
 		if(i != 999) {
@@ -151,7 +178,7 @@ public class Player extends Entity {
 				gp.playSoundEffect(3);
 				speed -= 2;
 				gp.obj[i] = null;
-				gp.ui.showMessage("Get slowed!");
+				gp.ui.showMessage("Get slowed");
 				break;
 			case "Ligthing":
 				gp.playSoundEffect(3);
