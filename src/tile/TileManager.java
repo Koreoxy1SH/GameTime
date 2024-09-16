@@ -22,7 +22,7 @@ public class TileManager {
 		this.gp = gp;
 		
 		//MEMBUAT 10 SETIAP SEPULUH TILE DARI MASIN-MASING DATA ARRAY DI DALAM TILE
-		tile = new Tile[10];
+		tile = new Tile[60];
 		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		
 		getTileImage();
@@ -34,13 +34,73 @@ public class TileManager {
 	
 	public void getTileImage() {
 		
-		setup(0, "Grass", false);
+		setup(0, "grass1", false);
 		setup(1, "wall", true);
-		setup(2, "Water", true);
-		setup(3, "Dirt", false);
-		setup(4, "Pohon", true);
-		setup(5, "Sand", false);
-
+		setup(2, "water-center", true);
+		//setup(3, "Dirt", false);
+		setup(3, "tree", true);
+		setup(4, "Sand", false);
+		
+		//DIRT
+		setup(5, "dirt-top-left", false);
+		setup(6, "dirt-top-center", false);
+		setup(7, "dirt-top-right", false);
+		setup(8, "dirt-center-left", false);
+		setup(9, "dirt-center", false);
+		setup(10, "dirt-center-right", false);
+		setup(11, "dirt-bottom-left", false);
+		setup(12, "dirt-bottom-center", false);
+		setup(13, "dirt-bottom-right", false);
+		
+		//WATER
+		setup(14, "water-top-left", true);
+		setup(15, "water-top-center1", true);
+		setup(16, "water-top-center2", true);
+		setup(17, "water-top-right", true);
+		setup(18, "water-center1-left", true);
+		setup(19, "water-center1-right", true);
+		setup(20, "water-center2-left", true);
+		setup(21, "water-center2-center", true);
+		setup(22, "water-center2-right", true);
+		setup(23, "water-bottom-left", false);
+		setup(24, "water-bottom-center1", true);
+		setup(25, "water-bottom-center2", false);
+		setup(26, "water-bottom-right", false);
+		setup(27, "water-center-right2", true);
+		setup(28, "water-corner-right", false);
+		setup(29, "water-left-1", false);
+		setup(30, "water-corner-right2", false);
+		setup(31, "water-bottom-1", false);
+		
+		//rock
+		setup(32, "rock1", true);
+		
+		//SEED
+		setup(33, "seed1", false);
+		setup(34, "seed2", false);
+		setup(35, "seed3", true);
+		
+		//DIRT
+		setup(36, "dirt-corner-left", false);
+		setup(37, "dirt-center1", false);
+		setup(38, "dirt-corner-right", false);
+		setup(39, "dirt-line-top", false);
+		setup(40, "dirt-line-center", false);
+		setup(41, "dirt-line-bottom", false);
+		
+		//BRICK
+		setup(42, "brick-top-left", true);
+		setup(43, "brick-top-center1", true);
+		setup(44, "brick-top-center2", true);
+		setup(45, "brick-top-right", true);
+		setup(46, "brick-center-left", true);
+		setup(47, "brick-center-center1", false);
+		setup(48, "brick-center-center2", false);
+		setup(49, "brick-center-right", true);
+		setup(50, "brick-bottom-left", true);
+		setup(51, "brick-bottom-center1", false);
+		setup(52, "brick-bottom-center2", false);
+		setup(53, "brick-bottom-right", true);
 	}
 	
 	public void setup(int index, String imageName, boolean collision) {

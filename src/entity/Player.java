@@ -47,7 +47,7 @@ public class Player extends Entity {
 	public void setDefaultValues() {
 		
 		//STRATING POSITION FOR PLAYER 
-		worldX = gp.tileSize * 23;
+		worldX = gp.tileSize * 30;
 		worldY = gp.tileSize * 21;
 		
 		speed = 4;
