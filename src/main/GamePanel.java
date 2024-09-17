@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//GAME STATE
 	public int gameState;
+	public final int titleState = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
 	public final int dialogueState = 3;
@@ -64,52 +65,14 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setupGame() {
 		aSetter.setObject();
 		aSetter.setNPC();
-		playMusic(0);
-		gameState = playState;
+		//playMusic(0);
+		gameState = titleState;
 	}
 	
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-
-//	@Override
-//	public void run() {
-//
-//		
-//		double drawInterval = 1000000000/FPS; //0.0166666 seconds
-//		double nextDrawTime = System.nanoTime() + drawInterval;
-//				
-//		while(gameThread != null) {
-//			//jika gamethread tidak sama dengan null maka akan berjalan apa?
-//			
-//			//Mendapatkan currentTime sistem agar untuk tidak hilang object di window nya saat digerakan	
-//			//long currentTime = System.nanoTime();
-//			//System.out.println("Current time: " + currentTime);
-//			
-//			// 1. UPDATE: update information such as character positions
-//			update();
-//			
-//			// 2. DRAW : draw the screen with the updated information 
-//			repaint();
-//			
-//			try {
-//				double remainingTime = nextDrawTime - System.nanoTime();
-//				remainingTime = remainingTime/1000000;
-//				
-//				if(remainingTime < 0) {
-//					remainingTime = 0;
-//				}
-//				
-//				Thread.sleep((long) remainingTime);
-//				
-//				nextDrawTime += drawInterval;
-//				
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 	
 	public void run() {
 		
@@ -186,28 +149,36 @@ public class GamePanel extends JPanel implements Runnable{
 			drawStart = System.nanoTime();
 		}
 		
-		//Tile
-		tileM.draw(g2);
-		
-		//OBJECT
-		for(int i = 0; i < obj.length; i ++) {
-			if(obj[i] != null) {
-				obj[i].draw(g2, this);
+		//TITLE SCREEN
+		if(gameState == titleState) {
+			ui.draw(g2);
+		} else {
+			//OTHER
+			
+			//Tile
+			tileM.draw(g2);
+			
+			//OBJECT
+			for(int i = 0; i < obj.length; i ++) {
+				if(obj[i] != null) {
+					obj[i].draw(g2, this);
+				}
 			}
+			
+			//DRAW NPC
+			for(int i = 0; i < npc.length; i++) {
+				if(npc[i] != null) {
+					npc[i].draw(g2);
+				}
+			}
+			
+			//Player
+			player.draw(g2);
+			
+			//UI
+			ui.draw(g2);
 		}
 		
-		//DRAW NPC
-		for(int i = 0; i < npc.length; i++) {
-			if(npc[i] != null) {
-				npc[i].draw(g2);
-			}
-		}
-		
-		//Player
-		player.draw(g2);
-		
-		//UI
-		ui.draw(g2);
 		
 		//DEBUG
 		if(keyH.checkDrawTime == true) {
