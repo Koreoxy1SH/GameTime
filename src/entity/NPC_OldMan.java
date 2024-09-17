@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity {
 		speed = 1;
 		
 		getImage();
+		setDialogue();
 	}
 	
 	public void getImage() {
@@ -25,6 +26,13 @@ public class NPC_OldMan extends Entity {
 		left2 = setup("/npc/oldman_left_2");
 		right1 = setup("/npc/oldman_right_1");
 		right2 = setup("/npc/oldman_right_2");
+	}
+	
+	public void setDialogue() {
+		dialogues[0] = "Hello, buddy whatss up!";
+		dialogues[1] = "Selamat datang di pulau ini!";
+		dialogues[2] = "Apakah kamu seorang Adventure ?";
+		dialogues[3] = "Aku harap kamu dapat menolong \nwarga sekitar sini";
 	}
 	
 	
@@ -51,8 +59,13 @@ public class NPC_OldMan extends Entity {
 			
 			actionLockCounter = 0;
 		}
+	}
+	
+	public void speak() {
 		
+		//DO this character specific stuff
 		
+		super.speak();
 	}
 	
 
