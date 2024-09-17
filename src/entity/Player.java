@@ -14,7 +14,6 @@ import main.UtilityTools;
 
 public class Player extends Entity {
 
-	GamePanel gp;
 	KeyHandler keyH;
 	
 	public final int screenX;
@@ -24,7 +23,9 @@ public class Player extends Entity {
 	int pixelCounter = 0;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
-		this.gp = gp;
+		
+		super(gp);
+		
 		this.keyH = keyH;
 		
 		screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -55,27 +56,14 @@ public class Player extends Entity {
 	
 	public void getPlayerImage() {
 		
-		up1 = setup("7");
-		up2 = setup("8");
-		down1 = setup("1");
-		down2 = setup("2");
-		left1 = setup("3");
-		left2 = setup("4");
-		right1 = setup("5");
-		right2 = setup("6");
-	}
-	
-	public BufferedImage setup(String imageName) {
-		UtilityTools uTool = new UtilityTools();
-		BufferedImage image = null;
-		
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
-			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		return image;
+		up1 = setup("/player/7");
+		up2 = setup("/player/8");
+		down1 = setup("/player/1");
+		down2 = setup("/player/2");
+		left1 = setup("/player/3");
+		left2 = setup("/player/4");
+		right1 = setup("/player/5");
+		right2 = setup("/player/6");
 	}
 	
 	
@@ -119,6 +107,9 @@ public class Player extends Entity {
 		}	
 		
 		if(moving == true) {
+			//CHECK NPC COLLISION
+			int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+			interactNPC(npcIndex);
 			
 			//IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if(collisionOn == false ) {
@@ -162,6 +153,12 @@ public class Player extends Entity {
 		
 		if(i != 999) {
 			
+		}
+	}
+	
+	public void interactNPC(int i) {
+		if(i != 999) {
+			System.out.println("You are hitting an npc!");
 		}
 	}
 	
