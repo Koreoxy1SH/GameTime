@@ -1,12 +1,10 @@
 package main;
 
 import entity.NPC_OldMan;
-import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Hole;
 import object.OBJ_Key;
-import object.OBJ_Ligthing;
-import object.OBJ_Poop;
+
 
 public class AssetSetter {
 	
@@ -28,6 +26,7 @@ public class AssetSetter {
 		gp.obj[2] = new OBJ_Hole(gp);
 		gp.obj[2].worldX = 37 * gp.tileSize;
 		gp.obj[2].worldY = 5 * gp.tileSize;
+		
 	}
 	
 	public void setNPC() {
