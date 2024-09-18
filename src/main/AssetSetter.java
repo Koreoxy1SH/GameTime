@@ -3,6 +3,7 @@ package main;
 import entity.NPC_OldMan;
 import object.OBJ_Chest;
 import object.OBJ_Door;
+import object.OBJ_Hole;
 import object.OBJ_Key;
 import object.OBJ_Ligthing;
 import object.OBJ_Poop;
@@ -16,7 +17,17 @@ public class AssetSetter {
 	}
 	
 	public void setObject() {
+		gp.obj[0] = new OBJ_Key(gp);
+		gp.obj[0].worldX = 36 * gp.tileSize;
+		gp.obj[0].worldY = 25 * gp.tileSize;
 		
+		gp.obj[1] = new OBJ_Hole(gp);
+		gp.obj[1].worldX = 48 * gp.tileSize;
+		gp.obj[1].worldY = 16 * gp.tileSize;
+		
+		gp.obj[2] = new OBJ_Hole(gp);
+		gp.obj[2].worldX = 37 * gp.tileSize;
+		gp.obj[2].worldY = 5 * gp.tileSize;
 	}
 	
 	public void setNPC() {

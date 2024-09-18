@@ -54,8 +54,8 @@ public class TileManager {
 		
 		//WATER
 		setup(14, "water-top-left", true);
-		setup(15, "water-top-center1", true);
-		setup(16, "water-top-center2", true);
+		setup(15, "water-top-center1", false);
+		setup(16, "water-top-center2", false);
 		setup(17, "water-top-right", true);
 		setup(18, "water-center1-left", true);
 		setup(19, "water-center1-right", true);
